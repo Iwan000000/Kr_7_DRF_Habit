@@ -1,12 +1,10 @@
-from django.shortcuts import render
-
 # Create your views here.
 from rest_framework import generics
-from users.serializers import UserSerializer
-from users.models import User
 from rest_framework.permissions import IsAuthenticated
-from users.permissions import IsUser
 
+from users.models import User
+from users.permissions import IsUser
+from users.serializers import UserSerializer
 
 
 class UserCreateAPIView(generics.CreateAPIView):

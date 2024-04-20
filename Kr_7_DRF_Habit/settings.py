@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
-from datetime import timedelta
 from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,8 +69,7 @@ ROOT_URLCONF = "Kr_7_DRF_Habit.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -146,10 +147,11 @@ REST_FRAMEWORK = {
 # Настройки для Celery
 
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = os.getenv('REDIS_URL') #'redis://localhost:6379' # Например, Redis, который по умолчанию работает на порту 6379
+CELERY_BROKER_URL = os.getenv(
+    'REDIS_URL')  # 'redis://localhost:6379' # Например, Redis, который по умолчанию работает на порту 6379
 
 # URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = os.getenv('REDIS_URL') #'redis://localhost:6379'
+CELERY_RESULT_BACKEND = os.getenv('REDIS_URL')  # 'redis://localhost:6379'
 
 # Часовой пояс для работы Celery
 CELERY_TIMEZONE = TIME_ZONE
@@ -174,7 +176,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000',
     'http://10.2.3.16:8000',
 ]
-
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
