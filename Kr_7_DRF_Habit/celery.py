@@ -3,7 +3,8 @@ import os
 from celery import Celery
 
 # Установка переменной окружения для настроек проекта
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Kr_7_DRF_Habit.settings')
+
 
 # Создание экземпляра объекта Celery
 app = Celery('tracker_of_habits')

@@ -14,7 +14,7 @@ def send_reminder_about_habit():
     """
 
     URL = 'https://api.telegram.org/bot'
-    TOKEN = settings.TELEGRAM_TOKEN
+    TOKEN = settings.TELEGRAM_BOT_API_KEY
 
     time_now = datetime.now().time().replace(second=0, microsecond=0)
     date_now = date.today()

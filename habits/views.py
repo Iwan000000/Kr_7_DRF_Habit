@@ -1,11 +1,11 @@
 # Create your views here.
-from habits.paginators import HabitsPagination
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from users.permissions import IsOwner
 
-from habits.models import Habit, NiceHabit
-from habits.serializers import HabitSerializer, PublicHabitsSerializer, NiceHabitSerializer
+from habits.models import Habit
+from habits.paginators import HabitsPagination
+from habits.serializers import HabitSerializer, PublicHabitsSerializer
+from users.permissions import IsOwner
 
 
 class HabitCreateAPIView(generics.CreateAPIView):
@@ -23,7 +23,7 @@ class HabitListAPIView(generics.ListAPIView):
     """Просмотр всех привычек пользователя"""
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated]
     pagination_class = HabitsPagination
 
     def get_queryset(self):
@@ -62,7 +62,7 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
 
 class NiceHabitCreateAPIView(generics.CreateAPIView):
     """Создание новой приятной привычки"""
-    serializer_class = NiceHabitSerializer
+    serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
@@ -73,30 +73,30 @@ class NiceHabitCreateAPIView(generics.CreateAPIView):
 
 class NiceHabitRetrieveAPIView(generics.RetrieveAPIView):
     """Просмотр приятной привычки"""
-    serializer_class = NiceHabitSerializer
-    queryset = NiceHabit.objects.all()
+    serializer_class = HabitSerializer
+    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitUpdateAPIView(generics.UpdateAPIView):
     """Обновление приятной привычки"""
-    serializer_class = NiceHabitSerializer
-    queryset = NiceHabit.objects.all()
+    serializer_class = HabitSerializer
+    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitDestroyAPIView(generics.DestroyAPIView):
     """Удаление приятной привычки"""
-    serializer_class = NiceHabitSerializer
-    queryset = NiceHabit.objects.all()
+    serializer_class = HabitSerializer
+    queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
 class NiceHabitListAPIView(generics.ListAPIView):
     """Просмотр всех приятных привычек пользователя"""
-    serializer_class = NiceHabitSerializer
-    queryset = NiceHabit.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
+    serializer_class = HabitSerializer
+    queryset = Habit.objects.all()
+    permission_classes = [IsAuthenticated]
     pagination_class = HabitsPagination
 
     def get_queryset(self):
