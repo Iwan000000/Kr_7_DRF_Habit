@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         user = User.objects.create(
-            email='admin@sky.pro',
+            email=os.getenv('SUPER_USER'),
             name='admin',
             telegram_chat_id='12345',
             is_superuser=True,
@@ -18,5 +18,5 @@ class Command(BaseCommand):
             is_active=True,
         )
 
-        user.set_password('admin')
+        user.set_password(os.getenv('SUPER_USER_PASS'))
         user.save()
